@@ -1,4 +1,4 @@
-const Constants = require('../shared/constants');
+const Constants = require('./constants');
 const Player = require('./player');
 const applyCollisions = require('./collisions');
 
