@@ -7,7 +7,7 @@ const path = require('path');
 const devWebpackConfig = require('../webpack.dev.js');
 
 const app = express()
-const port = 3000
+const port = 8000
 
 if (process.env.NODE_ENV === 'development') {
   // Setup Webpack for development
