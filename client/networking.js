@@ -29,14 +29,18 @@ export const connect = function() {
 	}
 )};
 
+export const startGame = username => {
+	socket.emit(Constants.MSG_TYPES.START_GAME, username);
+};
+
 export const joinGame = username => {
 	socket.emit(Constants.MSG_TYPES.JOIN_GAME, username);
 };
 
-export const updateDirection = userState => {
-	socket.emit(Constants.MSG_TYPES.INPUT, userState);
-};
-
 export const shoot = time => {
 	socket.emit(Constants.MSG_TYPES.SHOOT, time);
+};
+
+export const clientUpdate = userState => {
+	socket.emit(Constants.MSG_TYPES.CLIENT_UPDATE, userState);
 };

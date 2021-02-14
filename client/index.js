@@ -1,11 +1,12 @@
-import {connect, play} from './networking';
+import { connect, joinGame, shoot } from './networking';
 import { initState } from './state';
 
 console.log("Hello world");
 
 Promise.all([
-    joinGame()
+	connect()
 ]).then(() => {
-    play("dadada");
+	shoot("kj");
 }).catch(console.error);
+
 
