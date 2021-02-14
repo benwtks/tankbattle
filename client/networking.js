@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import { throttle } from 'throttle-debounce';
 import { processGameUpdate } from './state';
 
-const Constants = require('../shared/constants');
+const Constants = require('../constants');
 
 const socketProtocol = (window.location.protocol.includes('https')) ? 'wss' : 'ws';
 const socket = io(`${socketProtocol}://${window.location.host}`, { reconnection: false });
