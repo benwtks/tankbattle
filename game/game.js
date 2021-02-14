@@ -1,5 +1,5 @@
-const Constants = require('./constants');
-const Player = require('./player');
+const Constants = require('../constants');
+const Player = require('./objects/player');
 const applyCollisions = require('./collisions');
 
 class Game {
