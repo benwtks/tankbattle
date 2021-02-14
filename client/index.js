@@ -4,7 +4,7 @@ import { initState } from './state';
 console.log("Hello world");
 
 Promise.all([
-    connect()
+    joinGame()
 ]).then(() => {
     play("dadada");
 }).catch(console.error);
