@@ -19,12 +19,12 @@ Messages between the client and server.
 start_game
 join_game <id>
 shoot <timestamp>
-client_update <x> <y> <theta>
+client_update <x> <y> <speed> <theta>
 ```
 
 ### Messages to client
 
 ```
 game_over
-server_update [(<bullet x>,<bullet y>,<vx>,<vy>)] [(<player id>,<x>,<y>, <theta>)]
+server_update [(<bullet x>,<bullet y>,<vx>,<vy>)] [(<player id>,<x>,<y>, <speed>, <theta>)]
 ```
