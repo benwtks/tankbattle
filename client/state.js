@@ -16,7 +16,7 @@ export function initState() {
 	gameStart = 0;
 	firstServerTimestamp = 0;
 	const { me } = getCurrentState();
-	playerState = PlayerState(me.x, me.y);
+	playerState = new PlayerState(me.x, me.y);
 }
 
 export function processGameUpdate(update) {
@@ -51,7 +51,7 @@ function getBaseUpdate() {
 	return -1;
 }
 
-// Returns { others, bullets }
+// Returns { me, others, bullets }
 export function getCurrentState() {
 	if (!firstServerTimestamp) {
 		return {};

@@ -22,6 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const server = app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);
+	console.log(process.env.NODE_ENV);
 })
 
 sockets.listenForSockets();

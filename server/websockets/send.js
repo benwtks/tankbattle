@@ -1,3 +1,6 @@
+const Constants = require('../../constants');
+
+
 function sendUpdate(player, leaderboard) {
 	const nearbyPlayers = Object.values(this.players).filter(
 		p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
@@ -6,7 +9,7 @@ function sendUpdate(player, leaderboard) {
 		b => b.distanceTo(player) <= Constants.MAP_SIZE / 2,
 	);
 
-	socket.emit(Constants.MSG_TYPES.CLIENT_UPDATE, {
+	socket.emit(Constants.MSG_TYPES.SERVER_UPDATE, {
 		t: Date.now(),
 		me: player.serializeForUpdate(),
 		others: nearbyPlayers.map(p => p.serializeForUpdate()),

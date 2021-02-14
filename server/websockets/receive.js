@@ -10,7 +10,7 @@ exports.listenForSockets = function (server) {
 		console.log('Player connected! ', socket.id);
 
 		socket.on(Constants.MSG_TYPES.JOIN_GAME, joinGame);
-		socket.on(Constants.MSG_TYPES.INPUT, handleClientUpdate);
+		socket.on(Constants.MSG_TYPES.CLIENT_UPDATE, handleClientUpdate);
 		socket.on('disconnect', onDisconnect);
 	});
 }
@@ -19,11 +19,12 @@ exports.listenForSockets = function (server) {
 const game = new Game();
 
 function joinGame(username) {
+	console.log('hello,', username);
 	game.addPlayer(this, username);
 }
 
-function handleClientUpdate(dir) {
-	game.handleInput(this, dir);
+function handleClientUpdate(clientUpdate) {
+	game.handleClientUpdate(this, clientUpdate);
 }
 
 function onDisconnect() {
