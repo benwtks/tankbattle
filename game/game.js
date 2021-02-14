@@ -85,7 +85,7 @@ class Game {
 			const leaderboard = this.getLeaderboard();
 			Object.keys(this.sockets).forEach(playerID => {
 				const player = this.players[playerID];
-				serverSocket.sendUpdate(this.sockets[playerID], players, bullets);
+				serverSocket.sendUpdate(this.sockets[playerID], this.players, this.bullets);
 			});
 			this.shouldSendUpdate = false;
 		} else {
