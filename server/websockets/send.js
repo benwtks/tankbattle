@@ -1,7 +1,7 @@
 const Constants = require('../../constants');
 
 
-function sendUpdate(player, leaderboard) {
+function sendUpdate(socket, players, bullets) {
 	// const nearbyPlayers = Object.values(this.players).filter(
 	// 	p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
 	// );
@@ -17,7 +17,8 @@ function sendUpdate(player, leaderboard) {
 	// 	leaderboard,
 	// });
 	socket.emit(Constants.MSG_TYPES.SERVER_UPDATE, {
-		msg: "hi",
+		players,
+		bullets,
 	});
 }
 

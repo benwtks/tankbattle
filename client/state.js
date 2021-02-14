@@ -20,19 +20,20 @@ export function initState() {
 }
 
 export function processGameUpdate(update) {
-	if (!firstServerTimestamp) {
-		firstServerTimestamp = update.t;
-		gameStart = Date.now();
-	}
-	gameUpdates.push(update);
-
-	updateLeaderboard(update.leaderboard);
-
-	// Keep only one game update before the current server time
-	const base = getBaseUpdate();
-	if (base > 0) {
-		gameUpdates.splice(0, base);
-	}
+	console.log(update.msg);
+	// if (!firstServerTimestamp) {
+	// 	firstServerTimestamp = update.t;
+	// 	gameStart = Date.now();
+	// }
+	// gameUpdates.push(update);
+	//
+	// updateLeaderboard(update.leaderboard);
+	//
+	// // Keep only one game update before the current server time
+	// const base = getBaseUpdate();
+	// if (base > 0) {
+	// 	gameUpdates.splice(0, base);
+	// }
 }
 
 function currentServerTime() {
