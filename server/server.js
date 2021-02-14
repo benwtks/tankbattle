@@ -1,10 +1,12 @@
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const sockets = require('./websockets/receive');
+const { joinGame, handleClientUpdate, onDisconnect } = require('./websockets/receive')
 const path = require('path');
+const socketio = require('socket.io');
 
 const devWebpackConfig = require('../webpack.dev.js');
+const Constants = require("../constants");
 
 const app = express()
 const port = 3000
@@ -23,4 +25,13 @@ const server = app.listen(port, () => {
 	console.log(process.env.NODE_ENV);
 })
 
-sockets.listenForSockets();
+const io = socketio(server);
+
+// Listen for socket.io connections, defines API
+io.on('connection', socket => {
+    console.log('Player connected! ', socket.id);
+
+    socket.on(Constants.MSG_TYPES.JOIN_GAME, joinGame);
+    socket.on(Constants.MSG_TYPES.CLIENT_UPDATE, handleClientUpdate);
+    socket.on('disconnect', onDisconnect);
+});

@@ -1,6 +1,11 @@
-import { play } from './networking';
+import {connect, play} from './networking';
 import { initState } from './state';
 
 console.log("Hello world");
 
-play('hey');
+Promise.all([
+    connect()
+]).then(() => {
+    play("dadada");
+}).catch(console.error);
+
