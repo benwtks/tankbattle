@@ -1,7 +1,7 @@
 # tankbattle
 Multiplayer tank trouble game in Node.js
 
-# Development
+## Development
 
 To install dependencies
 `npm install`
@@ -9,11 +9,11 @@ To install dependencies
 To start the server
 `npm start`
 
-# WebSocket API Messages
+## WebSocket API Messages
 
 Messages between the client and server.
 
-## Messages to server
+### Messages to server
 
 ```
 start_game
@@ -22,7 +22,7 @@ shoot <timestamp>
 client_update <x> <y> <theta>
 ```
 
-## Messages to client
+### Messages to client
 
 ```
 game_over
