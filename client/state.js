@@ -10,10 +10,13 @@ const RENDER_DELAY = 30;
 const gameUpdates = [];
 let gameStart = 0;
 let firstServerTimestamp = 0;
+let playerState = null;
 
 export function initState() {
   gameStart = 0;
   firstServerTimestamp = 0;
+  const { me } = getCurrentState();
+  playerState = PlayerState(me.x, me.y);
 }
 
 export function processGameUpdate(update) {
@@ -66,6 +69,7 @@ export function getCurrentState() {
     const next = gameUpdates[base + 1];
     const ratio = (serverTime - baseUpdate.t) / (next.t - baseUpdate.t);
     return {
+      me: interpolateObject(baseUpdate.me, next.me, ratio),
       others: interpolateObjectArray(baseUpdate.others, next.others, ratio),
       bullets: interpolateObjectArray(baseUpdate.bullets, next.bullets, ratio),
     };
