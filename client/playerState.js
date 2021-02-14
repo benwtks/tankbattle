@@ -1,8 +1,8 @@
 class PlayerState {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+	}
 }
 
-export default PlayerState;
+export { PlayerState };
