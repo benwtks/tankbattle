@@ -10,7 +10,7 @@ exports.listenForSockets = function (server) {
 		console.log('Player connected! ', socket.id);
 
 		socket.on(Constants.MSG_TYPES.JOIN_GAME, joinGame);
-		socket.on(Constants.MSG_TYPES.INPUT, handleInput);
+		socket.on(Constants.MSG_TYPES.INPUT, handleClientUpdate);
 		socket.on('disconnect', onDisconnect);
 	});
 }
@@ -22,7 +22,7 @@ function joinGame(username) {
 	game.addPlayer(this, username);
 }
 
-function handleInput(dir) {
+function handleClientUpdate(dir) {
 	game.handleInput(this, dir);
 }
 
