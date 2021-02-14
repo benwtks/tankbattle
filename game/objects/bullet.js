@@ -1,9 +1,9 @@
 const Constants = require('../../constants');
 const shortid = require('shortid');
 
-const ObjectClass = require('./object');
+const Entity = require('./entity');
 
-class Bullet extends ObjectClass {
+class Bullet extends Entity {
 	constructor(parentID, x, y, dir) {
 		super(shortid(), x, y, dir, Constants.BULLET_SPEED);
 		this.parentID = parentID;

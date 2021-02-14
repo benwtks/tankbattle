@@ -1,9 +1,9 @@
 const Constants = require('../../constants');
 
-const ObjectClass = require('./object');
+const Entity = require('./entity');
 const Bullet = require('./bullet');
 
-class Player extends ObjectClass {
+class Player extends Entity {
 	constructor(id, username, x, y) {
 		super(id, x, y, Math.random() * 2 * Math.PI, Constants.PLAYER_SPEED);
 		this.username = username;
