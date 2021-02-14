@@ -17,7 +17,7 @@ module.exports = Object.freeze({
 		JOIN_GAME: 'join_game',         // Client requests to join a game
 		SHOOT: 'shoot',                 // client telling server it has shoot
 		CLIENT_UPDATE: 'client_update', // client updating the server about its user
-		SERVER_UPDATE: 'server_update'  // server updating everyone
+		SERVER_UPDATE: 'server_update',  // server updating everyone
 		GAME_OVER: 'game_over',         // Server tells clients the game has finished
 	},
 });
