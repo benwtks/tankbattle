@@ -9,8 +9,6 @@ const devWebpackConfig = require('../webpack.dev.js');
 const app = express()
 const port = 3000
 
-app.use(express.static('public'));
-
 if (process.env.NODE_ENV === 'development') {
   // Setup Webpack for development
   const compiler = webpack(devWebpackConfig);
