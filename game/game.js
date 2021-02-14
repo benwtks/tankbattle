@@ -1,6 +1,7 @@
 const Constants = require('../constants');
 const Player = require('./objects/player');
 const applyCollisions = require('./collisions');
+const serverSocket = require('../server/websockets/send')
 
 class Game {
 	constructor() {
@@ -68,10 +69,11 @@ class Game {
 
 		// Check if any players are dead
 		Object.keys(this.sockets).forEach(playerID => {
-			const socket = this.sockets[playerID];
 			const player = this.players[playerID];
 			if (player.hp <= 0) {
-				socket.emit(Constants.MSG_TYPES.GAME_OVER);
+				serverSocket.sendGameOver();
+
+				const socket = this.sockets[playerID];
 				this.removePlayer(socket);
 			}
 		});
@@ -80,9 +82,8 @@ class Game {
 		if (this.shouldSendUpdate) {
 			const leaderboard = this.getLeaderboard();
 			Object.keys(this.sockets).forEach(playerID => {
-				const socket = this.sockets[playerID];
 				const player = this.players[playerID];
-				socket.emit(Constants.MSG_TYPES.GAME_UPDATE, this.createUpdate(player, leaderboard));
+				serverSocket.sendUpdate(player, leaderboard);
 			});
 			this.shouldSendUpdate = false;
 		} else {
@@ -97,22 +98,6 @@ class Game {
 			.map(p => ({ username: p.username, score: Math.round(p.score) }));
 	}
 
-	createUpdate(player, leaderboard) {
-		const nearbyPlayers = Object.values(this.players).filter(
-			p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
-		);
-		const nearbyBullets = this.bullets.filter(
-			b => b.distanceTo(player) <= Constants.MAP_SIZE / 2,
-		);
-
-		return {
-			t: Date.now(),
-			me: player.serializeForUpdate(),
-			others: nearbyPlayers.map(p => p.serializeForUpdate()),
-			bullets: nearbyBullets.map(b => b.serializeForUpdate()),
-			leaderboard,
-		};
-	}
 }
 
 module.exports = Game;

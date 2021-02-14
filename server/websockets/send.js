@@ -1,4 +1,4 @@
-function createUpdate(player, leaderboard) {
+function sendUpdate(player, leaderboard) {
 	const nearbyPlayers = Object.values(this.players).filter(
 		p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
 	);
@@ -15,4 +15,6 @@ function createUpdate(player, leaderboard) {
 	});
 }
 
-
+function sendGameOver() {
+	socket.emit(Constants.MSG_TYPES.GAME_OVER);
+}
