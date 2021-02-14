@@ -1,6 +1,5 @@
 const Constants = require('../../constants');
 
-
 function sendUpdate(socket, players, bullets) {
 	// const nearbyPlayers = Object.values(this.players).filter(
 	// 	p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
