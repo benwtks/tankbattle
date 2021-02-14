@@ -21,3 +21,8 @@ function sendUpdate(player, leaderboard) {
 function sendGameOver() {
 	socket.emit(Constants.MSG_TYPES.GAME_OVER);
 }
+
+module.exports = {
+	sendUpdate,
+	sendGameOver,
+}
