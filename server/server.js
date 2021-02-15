@@ -6,8 +6,7 @@ const socketio = require('socket.io');
 
 const devWebpackConfig = require('../webpack.dev.js');
 const Constants = require("../constants");
-const { joinGame, handleClientUpdate, onDisconnect } = require('./websockets/receive')
-
+const socketReceive = require('./websockets/receive');
 
 const app = express()
 const port = 8000
@@ -32,7 +31,8 @@ const io = socketio(server);
 io.on('connection', socket => {
     console.log('Player connected! ', socket.id);
 
-    socket.on(Constants.MSG_TYPES.JOIN_GAME, joinGame);
-    socket.on(Constants.MSG_TYPES.CLIENT_UPDATE, handleClientUpdate);
-    socket.on('disconnect', onDisconnect);
+    socket.on(Constants.MSG_TYPES.JOIN_GAME, socketReceive.joinGame);
+    socket.on(Constants.MSG_TYPES.CLIENT_UPDATE, socketReceive.handleClientUpdate);
+    socket.on(Constants.MSG_TYPES.SHOOT, socketReceive.handleShot);
+    socket.on('disconnect', socketReceive.onDisconnect);
 });
